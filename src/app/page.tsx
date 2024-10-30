@@ -1,101 +1,48 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  let [count, setCount] = useState(0); // This is the way to write useState hook, it updates the value of count at every click.
+  // Here count is a state, its value must be 0, then at click it changes 0 to 1, again click 1 to 2, and so on.
+  // useState refreshes and reloads the component.
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  return (
+    <div style={{ fontSize: 25 }}>
+      <h1 className="text-center p-10 text-green-500 underline">Learning useState Hook</h1>
+      <br />
+      <p className="text-red-600 text-center">
+        What is useState?
+        <br />
+        <br />
+        useState is a React hook used to create a piece of state within a functional component. <br />
+        When you call useState, you pass an initial value (the "starting" state) and it returns two things:<br />
+        1 - The current state value.<br />
+        2 - A function to update that state.
+        <br />
+        <br />
+        Why is useState used?
+        <br />
+        <br />
+        To manage component data: useState allows you to create a variable that React watches. When the state changes, React re-renders the component, updating the UI automatically.
+        <br />
+        To add interactivity: With useState, you can create features like toggling content, updating counters, handling form inputs, and more.
+        <br />
+        Simplifies data flow: It enables components to "remember" the state even after user interactions, ensuring data remains consistent.
+      </p>
+      <br />
+      <br />
+      <div className="flex justify-center"> {/* Flex container to center the button */}
+        <h1 className="text-center p-10 text-blue-500" >Count-Number:{count} </h1>  {/**Count change at serversite */}
+        <button
+          className="bg-blue-500 text-lg rounded text-white px-4 py-2 hover:bg-blue-700"
+          onClick={() => {
+            setCount(count + 1);
+            console.log("Button Clicked Events", count);
+          }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          Click Me, State changes at Server Side
+        </button>
+      </div>
     </div>
   );
 }
